@@ -1,8 +1,11 @@
 name: api-gateway-cron
 
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
-
   repository_dispatch:
     types: [api-gateway-cron-trigger]
 
@@ -29,3 +32,6 @@ jobs:
 
       - name: api-gateway-cron
         run: uv run python main.py
+
+      - name: http-log
+        run: uv run python http-log.py
