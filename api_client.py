@@ -1,8 +1,7 @@
 # api_client.py
 import json
-
+import sys  # Thêm thư viện sys
 import requests
-
 
 def fetch_and_print_api(url, headers=None, params=None):
     """Hàm dùng chung để gọi API và in kết quả JSON."""
@@ -24,8 +23,13 @@ def fetch_and_print_api(url, headers=None, params=None):
     except requests.exceptions.HTTPError as http_err:
         print(f"Lỗi HTTP xảy ra: {http_err}")
         print("Chi tiết phản hồi lỗi:", response.text)
+        sys.exit(1)  # Kích hoạt lỗi cho GitHub Actions
+        
     except requests.exceptions.JSONDecodeError:
         print("Lỗi: Phản hồi trả về không phải là định dạng JSON hợp lệ!")
         print("Nội dung thực tế nhận được:", response.text)
+        sys.exit(1)  # Kích hoạt lỗi cho GitHub Actions
+        
     except Exception as err:
         print(f"Đã xảy ra lỗi hệ thống: {err}")
+        sys.exit(1)  # Kích hoạt lỗi cho GitHub Actions
