@@ -1,7 +1,7 @@
 # persona.py
 from api_client import fetch_and_print_api
 
-url = "https://20206205.tech/api/api-gateway/code-persona-service/public/personas"
+url = "https://20206205.tech/api/api-gateway/code-persona-service/personas"
 
 
 params = {"page": 1, "size": 50}
